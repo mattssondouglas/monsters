@@ -8,7 +8,8 @@ class App extends Component {
 	constructor() {
 		super()
 		this.state = {
-			name: 'Douglas'
+			name: {firstName:'Douglas', lastName: 'Mattsson'},
+			city: 'Malaga'
 		}
 	}
 
@@ -18,10 +19,10 @@ class App extends Component {
 			<header className="App-header">
 			<img src={logo} className="App-logo" alt="logo" />
 			<p>
-				Hello {this.state.name}
+				Hello {this.state.name.firstName}, you live in {this.state.city}
 			</p>
 			<button onClick={() => {
-				this.setState({ name: 'Mattsson'})
+				this.setState({ name: {firstName: 'Mattsson'}})
 			}}>Change name</button>
 			</header>
 			</div>
