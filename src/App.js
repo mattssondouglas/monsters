@@ -24,17 +24,17 @@ class App extends Component {
 				},
 				{
 					name: 'Marianne',
-				}
+				},
 			]
-		}}
+		}
+	}
 
 		render() {
-			return(
-				<div classname='App'>
+			return (
+				<div className='App'>
 				{this.state.monsters.map((monster) => {
-					return <h1>{this.state.monster.name}</h1>
-				})
-				}
+					return <h1 key={monster.name}>{monster.name}</h1>
+				})}
 				</div>
 			)
 		}
