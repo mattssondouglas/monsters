@@ -40,14 +40,17 @@ class App extends Component {
 
 		render() {
 
-			const filteredProspects = this.state.prospects.filter( (prospect) => {
-				return prospect.name.toLocaleLowerCase().includes(this.state.searchField)
+			const { prospects, searchField } = this.state;
+			const { onSearchChange } = this;
+
+			const filteredProspects = prospects.filter( (prospect) => {
+				return prospect.name.toLocaleLowerCase().includes(searchField)
 			})
 
 
 			return (
 				<div className='App'>
-				<input type="search" className="search-box" placeholder="Search prospects..." onChange={this.onSearchChange}/>
+				<input type="search" className="search-box" placeholder="Search prospects..." onChange={onSearchChange}/>
 				{filteredProspects.map((prospect) => {
 					return (
 						<div key={prospect.id}>
