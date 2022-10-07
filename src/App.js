@@ -9,7 +9,8 @@ class App extends Component {
 		super()
 
 		this.state = {
-			prospects : []
+			prospects : [],
+			searchField: '',
 		}
 	}
 
@@ -29,20 +30,23 @@ class App extends Component {
 	}
 
 		render() {
+
+			const filteredProspects = this.state.prospects.filter( (prospect) => {
+				return prospect.name.toLocaleLowerCase().includes(this.state.searchField)
+			})
+
+
 			return (
 				<div className='App'>
 				<input type="search" className="search-box" placeholder="Search prospects..." onChange={(event) => {
-					console.log(event.target.value);
 
-					const searchString = event.target.value.toLocaleLowerCase()
-					const filteredProspects = this.state.prospects.filter( (prospect) => {
-						return prospect.name.toLocaleLowerCase().includes(searchString)
-					})
+					const searchField = event.target.value.toLocaleLowerCase()
+
 					this.setState( () => {
-						return { prospects : filteredProspects}
+						return { searchField }
 					})
 				}}/>
-				{this.state.prospects.map((prospect) => {
+				{filteredProspects.map((prospect) => {
 					return (
 						<div key={prospect.id}>
 							<h1>{prospect.name}</h1>
@@ -50,8 +54,7 @@ class App extends Component {
 				)})}
 				</div>
 			)
-		}
-	}
+		}}
 
 
 export default App;
