@@ -29,6 +29,15 @@ class App extends Component {
 	)
 	}
 
+	onSearchChange = (event) => {
+
+		const searchField = event.target.value.toLocaleLowerCase()
+
+		this.setState( () => {
+			return { searchField }
+		})
+	}
+
 		render() {
 
 			const filteredProspects = this.state.prospects.filter( (prospect) => {
@@ -38,14 +47,7 @@ class App extends Component {
 
 			return (
 				<div className='App'>
-				<input type="search" className="search-box" placeholder="Search prospects..." onChange={(event) => {
-
-					const searchField = event.target.value.toLocaleLowerCase()
-
-					this.setState( () => {
-						return { searchField }
-					})
-				}}/>
+				<input type="search" className="search-box" placeholder="Search prospects..." onChange={this.onSearchChange}/>
 				{filteredProspects.map((prospect) => {
 					return (
 						<div key={prospect.id}>
