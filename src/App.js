@@ -22,7 +22,7 @@ class App extends Component {
 						return { prospects: users }
 			},
 			() => {
-				console.log(this.state)
+
 			}
 		)
 	)
@@ -57,7 +57,7 @@ class App extends Component {
 						</div>
 				)
 			})}
-			<CardList />
+			<CardList prospects={'Here are the prospects'}/>
 				</div>
 			)
 		}}
