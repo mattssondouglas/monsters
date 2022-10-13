@@ -1,3 +1,5 @@
+// Component for results, currently formatted as cards in list.
+
 import { Component } from 'react'
 
 class CardList extends Component {
