@@ -50,14 +50,7 @@ class App extends Component {
 			return (
 				<div className='App'>
 				<input type="search" className="search-box" placeholder="Search prospects..." onChange={onSearchChange}/>
-				{filteredProspects.map((prospect) => {
-					return (
-						<div key={prospect.id}>
-							<h1>{prospect.name}</h1>
-						</div>
-				)
-			})}
-			<CardList prospects={'Here are the prospects'}/>
+				<CardList prospects={filteredProspects}/>
 				</div>
 			)
 		}}
