@@ -1,4 +1,4 @@
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 
 import CardList from './components/card-list/card-list.component.jsx'
 import SearchBox from './components/search-box/search-box.component.jsx'
@@ -7,20 +7,28 @@ import './App.css';
 const App = () => {
 	const [searchField, setSearchField] = useState('') // [value, setValue]
 	const [prospects, setProspects] = useState([])
+	const [filteredProspects, setFilteredProspects] = useState(prospects)
 
-	fetch('https://jsonplaceholder.typicode.com/users')
-	.then((res) => res.json())
-	.then((users) => setProspects(users)
-	)
+	useEffect(()=>{
+		fetch('https://jsonplaceholder.typicode.com/users')
+		.then((res) => res.json())
+		.then((users) => setProspects(users))
+	},[])
+
+	useEffect(()=>{
+		const newFilteredProspects = prospects.filter( (prospect) => {
+			return prospect.name.toLocaleLowerCase().includes(searchField)
+		})
+		setFilteredProspects(newFilteredProspects)
+	},[prospects, searchField])
+
 
 	const onSearchChange =  (event) => {
 		const searchFieldString = event.target.value.toLocaleLowerCase()
 		setSearchField(searchFieldString)
 	}
 
-	const filteredProspects = prospects.filter( (prospect) => {
-		return prospect.name.toLocaleLowerCase().includes(searchField)
-	})
+
 
 	return (
 		<div className='App'>
