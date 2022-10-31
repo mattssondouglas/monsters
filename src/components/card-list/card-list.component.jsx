@@ -7,10 +7,12 @@ class CardList extends Component {
 		const {prospects} = this.props
 
 		return (
-			<div>
+			<div className='card-list'>
 			{prospects.map(prospect => (
-					<div>
-						<h1 key={prospect.id}>{prospect.name}</h1>
+					<div className='card-container' key={prospect.id}>
+						<img alt={`prospect ${prospect.name}`} src={`https://robohash.org/${prospect.id}?set=set5&size=150x150`}/>
+						<h2>{prospect.name}</h2>
+						<p>{prospect.email}</p>
 					</div>
 			)
 		)}
